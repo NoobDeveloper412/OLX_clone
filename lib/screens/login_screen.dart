@@ -19,16 +19,16 @@ class LoginScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: 100),
-                        Image.network(
+                        Image.asset(
                           "assets/images/cart.png",
-                          color: Colors.orange,
+                          // color: Colors.orange,
                           height: 150,
                         ),
                         SizedBox(
                           height: 10,
                         ),
                         Text(
-                          "Buy or Sell",
+                          "OLX",
                           style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,

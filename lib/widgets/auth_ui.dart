@@ -47,7 +47,7 @@ class AuthUI extends StatelessWidget {
         ),
         SignInButton(
           Buttons.FacebookNew,
-          text: "Sign up with Google",
+          text: "Sign up with Facebook",
           onPressed: () {},
         ),
         Padding(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:olx_clone/screens/login_screen.dart';
 import 'package:olx_clone/screens/splash_screen.dart';
 
 void main() {
@@ -14,12 +15,17 @@ class MyApp extends StatelessWidget {
         future: Future.delayed(const Duration(seconds: 3)),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return MaterialApp(home: SplashScreen());
+            return MaterialApp(
+              home: SplashScreen(),
+              debugShowCheckedModeBanner: false,
+            );
           } else {
             return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                theme: ThemeData(primaryColor: Colors.orange),
                 home: Scaffold(
-              body: Center(child: Text('App Loaded.')),
-            ));
+                  body: LoginScreen(),
+                ));
           }
         });
   }

@@ -34,10 +34,16 @@ class AuthUI extends StatelessWidget {
                 ],
               )),
         ),
+        SizedBox(
+          height: 5,
+        ),
         SignInButton(
           Buttons.Google,
           text: "Sign up with Google",
           onPressed: () {},
+        ),
+        SizedBox(
+          height: 5,
         ),
         SignInButton(
           Buttons.FacebookNew,

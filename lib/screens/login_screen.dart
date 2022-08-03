@@ -20,9 +20,9 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         SizedBox(height: 100),
                         Image.network(
-                          "https://cdn3.iconfinder.com/data/icons/dottie-shopping/24/shopping_048-shopping_cart-strolley-supermarket-express-512.png",
+                          "assets/images/cart.png",
                           color: Colors.orange,
-                          height: 80,
+                          height: 150,
                         ),
                         SizedBox(
                           height: 10,

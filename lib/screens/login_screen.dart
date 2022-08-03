@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:olx_clone/widgets/auth_ui.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -35,7 +36,17 @@ class LoginScreen extends StatelessWidget {
                         )
                       ],
                     ))),
-            Expanded(child: Container()),
+            Expanded(child: Container(child: AuthUI())),
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Text(
+                  'If you continue, you agree to our Terms and Conditions.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                  ),
+                )),
           ],
         ));
   }

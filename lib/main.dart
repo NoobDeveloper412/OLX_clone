@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
           } else {
             return MaterialApp(
                 debugShowCheckedModeBanner: false,
-                theme: ThemeData(primaryColor: Colors.orange),
+                theme:
+                    ThemeData(primaryColor: Colors.orange, fontFamily: 'Lato'),
                 home: Scaffold(
                   body: LoginScreen(),
                 ));

@@ -20,3 +20,9 @@ flutter:
   uses-material-design: true
   assets:
    - assets/images/
+
+  fonts:
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato/Lato-Regular.ttf
+      

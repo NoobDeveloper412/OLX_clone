@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               theme: ThemeData(primaryColor: Colors.orange, fontFamily: 'Lato'),
-              initialRoute: LoginScreen.id,
+              home: LoginScreen(),
+              // Initial Routing is not working for some reason
               routes: {
                 LoginScreen.id: (context) => LoginScreen(),
                 PhoneAuthScreen.id: (context) => PhoneAuthScreen()

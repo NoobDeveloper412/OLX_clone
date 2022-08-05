@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:olx_clone/screens/authentication/phoneAuthScreen.dart';
 import 'package:olx_clone/screens/login_screen.dart';
 import 'package:olx_clone/screens/splash_screen.dart';
 
@@ -21,12 +22,14 @@ class MyApp extends StatelessWidget {
             );
           } else {
             return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                theme:
-                    ThemeData(primaryColor: Colors.orange, fontFamily: 'Lato'),
-                home: Scaffold(
-                  body: LoginScreen(),
-                ));
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(primaryColor: Colors.orange, fontFamily: 'Lato'),
+              initialRoute: LoginScreen.id,
+              routes: {
+                LoginScreen.id: (context) => LoginScreen(),
+                PhoneAuthScreen.id: (context) => PhoneAuthScreen()
+              },
+            );
           }
         });
   }

@@ -101,8 +101,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                             validate = true;
                           });
                         }
-                        // ignore: prefer_is_empty
-                        if (value.length < 0) {
+                        if (value.length < 10) {
                           setState(() {
                             validate = false;
                           });

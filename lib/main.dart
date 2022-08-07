@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:olx_clone/screens/authentication/phoneAuthScreen.dart';
+import 'package:olx_clone/screens/location_screen.dart';
 import 'package:olx_clone/screens/login_screen.dart';
 import 'package:olx_clone/screens/splash_screen.dart';
 
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
               // Initial Routing is not working for some reason
               routes: {
                 LoginScreen.id: (context) => LoginScreen(),
-                PhoneAuthScreen.id: (context) => PhoneAuthScreen()
+                PhoneAuthScreen.id: (context) => PhoneAuthScreen(),
+                LocationScreen.id: (context) => LocationScreen(),
               },
             );
           }

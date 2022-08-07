@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:olx_clone/screens/authentication/phoneAuthScreen.dart';
+import 'package:olx_clone/screens/location_screen.dart';
 
 class OTPScreen extends StatefulWidget {
-  final String number;
-  OTPScreen({required this.number});
+  final String number, verificationId;
+
+  OTPScreen({required this.number, required this.verificationId});
   @override
   State<OTPScreen> createState() => _OTPScreenState();
 }
@@ -16,6 +19,27 @@ class _OTPScreenState extends State<OTPScreen> {
   var _text4 = TextEditingController();
   var _text5 = TextEditingController();
   var _text6 = TextEditingController();
+
+  Future<void> phoneCredentials(BuildContext context, String otp) async {
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: widget.verificationId,
+        smsCode: otp,
+      );
+
+      final User? user = (await _auth.signInWithCredential(credential)).user;
+
+      if (user != null) {
+        // Signin
+        Navigator.pushReplacementNamed(context, LocationScreen.id);
+      } else {
+        print("Login failed.");
+      }
+    } catch (e) {
+      print("Error: ${e.toString()}");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +121,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   child: TextFormField(
                     controller: _text1,
                     maxLength: 1,
+                    // style: Decoration(),
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(border: OutlineInputBorder()),
@@ -195,7 +220,11 @@ class _OTPScreenState extends State<OTPScreen> {
                                 if (_text4.text.length == 1) {
                                   if (_text5.text.length == 1) {
                                     if (_text6.text.length == 1) {
-                                      print('done');
+                                      String otp =
+                                          '${_text1.text}${_text2.text}${_text3.text}${_text4.text}${_text5.text}${_text6.text}';
+
+                                      // Login
+                                      phoneCredentials(context, otp);
                                     }
                                   }
                                 }

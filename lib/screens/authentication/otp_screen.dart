@@ -10,8 +10,16 @@ class OTPScreen extends StatefulWidget {
 }
 
 class _OTPScreenState extends State<OTPScreen> {
+  var _text1 = TextEditingController();
+  var _text2 = TextEditingController();
+  var _text3 = TextEditingController();
+  var _text4 = TextEditingController();
+  var _text5 = TextEditingController();
+  var _text6 = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final node = FocusScope.of(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -80,6 +88,127 @@ class _OTPScreenState extends State<OTPScreen> {
                     child: Icon(Icons.edit))
               ],
             ),
+            SizedBox(
+              height: 12,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    controller: _text1,
+                    maxLength: 1,
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    onChanged: (value) {
+                      if (value.length == 1) {
+                        node.nextFocus();
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: TextFormField(
+                    controller: _text2,
+                    maxLength: 1,
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    onChanged: (value) {
+                      if (value.length == 1) {
+                        node.nextFocus();
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: TextFormField(
+                    controller: _text3,
+                    maxLength: 1,
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    onChanged: (value) {
+                      if (value.length == 1) {
+                        node.nextFocus();
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: TextFormField(
+                    controller: _text4,
+                    maxLength: 1,
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    onChanged: (value) {
+                      if (value.length == 1) {
+                        node.nextFocus();
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: TextFormField(
+                    controller: _text5,
+                    maxLength: 1,
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    onChanged: (value) {
+                      if (value.length == 1) {
+                        node.nextFocus();
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: TextFormField(
+                    controller: _text6,
+                    maxLength: 1,
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    onChanged: (value) {
+                      if (value.length == 1) {
+                        // node.nextFocus();
+                        if (value.length == 1) {
+                          if (_text1.text.length == 1) {
+                            if (_text2.text.length == 1) {
+                              if (_text3.text.length == 1) {
+                                if (_text4.text.length == 1) {
+                                  if (_text5.text.length == 1) {
+                                    if (_text6.text.length == 1) {
+                                      print('done');
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),

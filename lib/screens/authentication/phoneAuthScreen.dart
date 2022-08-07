@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:olx_clone/services/phoneAuthService.dart';
 
 class PhoneAuthScreen extends StatefulWidget {
   const PhoneAuthScreen({Key? key}) : super(key: key);
@@ -28,10 +29,6 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
       ],
     ));
     showDialog(context: context, builder: (BuildContext context) => alert);
-  }
-
-  phoneAuthentication(number) {
-    print(number);
   }
 
   // String counterText = '0';
@@ -134,8 +131,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                 onPressed: () {
                   String number =
                       '${countryCodeController.text}${phoneNumberController.text}';
-                  phoneAuthentication(number);
-                  showAlertDialog(context);
+                  _service.verifyPhoneNumber(context, number);
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -151,3 +147,5 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
     );
   }
 }
+
+PhoneAuthService _service = PhoneAuthService();

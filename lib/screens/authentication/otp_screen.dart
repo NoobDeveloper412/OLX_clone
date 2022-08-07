@@ -1,10 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class OTPScreen extends StatefulWidget {
-  const OTPScreen({Key? key}) : super(key: key);
-
+  final String number;
+  OTPScreen({required this.number});
   @override
   State<OTPScreen> createState() => _OTPScreenState();
 }
@@ -14,11 +13,69 @@ class _OTPScreenState extends State<OTPScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        elevation: 1,
+        backgroundColor: Colors.white,
+        title: const Text(
+          'Login',
+          style: TextStyle(color: Colors.orange),
+        ),
         automaticallyImplyLeading: false,
       ),
-      body: Center(
-        child: Text('OTP Screen'),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 20.0, right: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 40,
+            ),
+            CircleAvatar(
+              radius: 30,
+              backgroundColor: Colors.red.shade200,
+              child: const Icon(
+                CupertinoIcons.person_alt_circle,
+                color: Colors.red,
+                size: 60,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Welcome Back",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: RichText(
+                    text: TextSpan(
+                      text: 'We sent a 6-digit code to your phone number.',
+                      style: TextStyle(color: Colors.grey, fontSize: 12),
+                      children: [
+                        TextSpan(
+                            text: widget.number,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontSize: 12)),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(Icons.edit))
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

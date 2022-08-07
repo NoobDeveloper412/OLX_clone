@@ -13,22 +13,30 @@ class PhoneAuthScreen extends StatefulWidget {
 class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
   bool validate = false;
   var countryCodeController = TextEditingController(text: "+92");
-  var phoneNumberController = TextEditingController();
+  var phoneNumberController = TextEditingController(text: "3060688855");
 
 // Alert Dialog
-  showAlertDialog(BuildContext context) {
-    AlertDialog alert = AlertDialog(
-        content: Row(
-      children: [
-        CircularProgressIndicator(
-          valueColor:
-              AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
-        ),
-        const SizedBox(width: 10),
-        const Text("Please wait..."),
-      ],
-    ));
-    showDialog(context: context, builder: (BuildContext context) => alert);
+  // showAlertDialog(BuildContext context) {
+  //   AlertDialog alert = AlertDialog(
+  //       content: Row(
+  //     children: [
+  //       CircularProgressIndicator(
+  //         valueColor:
+  //             AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+  //       ),
+  //       const SizedBox(width: 10),
+  //       const Text("Please wait..."),
+  //     ],
+  //   ));
+  //   showDialog(context: context, builder: (BuildContext context) => alert);
+  // }
+
+  final PhoneAuthService _service = PhoneAuthService();
+
+  @override
+  void dispose() {
+    // showAlertDialog(context);
+    super.dispose();
   }
 
   // String counterText = '0';
@@ -132,7 +140,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                   String number =
                       '${countryCodeController.text}${phoneNumberController.text}';
                   _service.verifyPhoneNumber(context, number);
-                  showAlertDialog(context);
+                  // showAlertDialog(context);
                 },
                 child: const Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -148,5 +156,3 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
     );
   }
 }
-
-PhoneAuthService _service = PhoneAuthService();

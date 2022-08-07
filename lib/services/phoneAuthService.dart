@@ -24,8 +24,8 @@ class PhoneAuthService {
 
     final PhoneCodeSent codeSent = (String veriId, int? resendToken) async {
       // If otp sent successfully, show the otp dialog.
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => OTPScreen()));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => OTPScreen(number: number)));
     };
     try {
       auth.verifyPhoneNumber(

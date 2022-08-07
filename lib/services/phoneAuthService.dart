@@ -22,7 +22,7 @@ class PhoneAuthService {
       print('The error is ${authException.code}');
     };
 
-    final PhoneCodeSent codeSend = (String veriId, int? resendToken) async {
+    final PhoneCodeSent codeSent = (String veriId, int? resendToken) async {
       // If otp sent successfully, show the otp dialog.
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => OTPScreen()));
@@ -30,17 +30,17 @@ class PhoneAuthService {
     try {
       auth.verifyPhoneNumber(
           phoneNumber: number,
-          timeout: Duration(seconds: 60),
+          timeout: const Duration(seconds: 60),
           verificationCompleted: verificationCompleted,
           verificationFailed: verificationFailed,
-          codeSent: codeSend,
+          codeSent: codeSent,
           codeAutoRetrievalTimeout: (String veriId) {
             // Save the verification id and resend the code
             // after 1 minute.
             print('verification id is $veriId');
           });
     } catch (e) {
-      print(e);
+      print("Error: ${e.toString()}");
     }
   }
 }

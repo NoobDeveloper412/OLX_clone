@@ -24,8 +24,8 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
           valueColor:
               AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
         ),
-        SizedBox(width: 10),
-        Text("Please wait..."),
+        const SizedBox(width: 10),
+        const Text("Please wait..."),
       ],
     ));
     showDialog(context: context, builder: (BuildContext context) => alert);
@@ -37,10 +37,10 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.orange,
         ),
-        title: Text(
+        title: const Text(
           'Login',
           style: TextStyle(color: Colors.orange),
         ),
@@ -50,27 +50,27 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             CircleAvatar(
               radius: 30,
               backgroundColor: Colors.red.shade200,
-              child: Icon(
+              child: const Icon(
                 CupertinoIcons.person_alt_circle,
                 color: Colors.red,
                 size: 60,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
-            Text('Enter your phone number',
+            const Text('Enter your phone number',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text('We will send a confirmation code on your phone.',
+            const Text('We will send a confirmation code on your phone.',
                 style: TextStyle(color: Colors.grey)),
             Row(
               children: [
@@ -79,7 +79,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                     child: TextFormField(
                       controller: countryCodeController,
                       enabled: false,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: "Country", counterText: "10"),
                     )),
                 const SizedBox(
@@ -105,7 +105,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                         }
                       },
                       enabled: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: "Number",
                           // hintText: 'Enter your phone number',
 
@@ -132,8 +132,9 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                   String number =
                       '${countryCodeController.text}${phoneNumberController.text}';
                   _service.verifyPhoneNumber(context, number);
+                  showAlertDialog(context);
                 },
-                child: Padding(
+                child: const Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Text(
                     "Next",

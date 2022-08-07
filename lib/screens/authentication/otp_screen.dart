@@ -99,259 +99,64 @@ class _OTPScreenState extends State<OTPScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
-              // children: [
-              //   const SizedBox(
-              //     height: 40,
-              //   ),
-              //   CircleAvatar(
-              //     radius: 30,
-              //     backgroundColor: Colors.red.shade200,
-              //     child: const Icon(
-              //       CupertinoIcons.person_alt_circle,
-              //       color: Colors.red,
-              //       size: 60,
-              //     ),
-              //   ),
-              //   const SizedBox(
-              //     height: 10,
-              //   ),
-              //   const Text(
-              //     "Welcome Back",
-              //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-              //   ),
-              //   const SizedBox(
-              //     height: 10,
-              //   ),
-              //   Row(
-              //     children: [
-              //       Expanded(
-              //         child: RichText(
-              //           text: TextSpan(
-              //             text: 'We sent a 6-digit code to your phone number.',
-              //             style:
-              //                 const TextStyle(color: Colors.grey, fontSize: 12),
-              //             children: [
-              //               TextSpan(
-              //                   text: widget.number,
-              //                   style: const TextStyle(
-              //                       fontWeight: FontWeight.bold,
-              //                       color: Colors.black,
-              //                       fontSize: 12)),
-              //             ],
-              //           ),
-              //         ),
-              //       ),
-              //       InkWell(
-              //           onTap: () {
-              //             // Navigator.pop(context);
-              //             // Sending the user back to the auth screen as i was not able to pop the context
-              //             Navigator.push(
-              //                 context,
-              //                 MaterialPageRoute(
-              //                     builder: (context) => const PhoneAuthScreen()));
-              //           },
-              //           child: const Icon(Icons.edit))
-              //     ],
-              //   ),
-              //   const SizedBox(
-              //     height: 12,
-              //   ),
-              //   Row(
-              //     children: [
-              //       Expanded(
-              //         child: TextFormField(
-              //           controller: _text1,
-              //           maxLength: 1,
-              //           // style: Decoration(),
-              //           keyboardType: TextInputType.number,
-              //           textInputAction: TextInputAction.next,
-              //           decoration:
-              //               const InputDecoration(border: OutlineInputBorder()),
-              //           onChanged: (value) {
-              //             if (value.length == 1) {
-              //               node.nextFocus();
-              //             }
-              //           },
-              //         ),
-              //       ),
-              //       const SizedBox(
-              //         width: 10,
-              //       ),
-              //       Expanded(
-              //         child: TextFormField(
-              //           controller: _text2,
-              //           maxLength: 1,
-              //           keyboardType: TextInputType.number,
-              //           textInputAction: TextInputAction.next,
-              //           decoration:
-              //               const InputDecoration(border: OutlineInputBorder()),
-              //           onChanged: (value) {
-              //             if (value.length == 1) {
-              //               node.nextFocus();
-              //             }
-              //           },
-              //         ),
-              //       ),
-              //       const SizedBox(
-              //         width: 10,
-              //       ),
-              //       Expanded(
-              //         child: TextFormField(
-              //           controller: _text3,
-              //           maxLength: 1,
-              //           keyboardType: TextInputType.number,
-              //           textInputAction: TextInputAction.next,
-              //           decoration:
-              //               const InputDecoration(border: OutlineInputBorder()),
-              //           onChanged: (value) {
-              //             if (value.length == 1) {
-              //               node.nextFocus();
-              //             }
-              //           },
-              //         ),
-              //       ),
-              //       const SizedBox(
-              //         width: 10,
-              //       ),
-              //       Expanded(
-              //         child: TextFormField(
-              //           controller: _text4,
-              //           maxLength: 1,
-              //           keyboardType: TextInputType.number,
-              //           textInputAction: TextInputAction.next,
-              //           decoration:
-              //               const InputDecoration(border: OutlineInputBorder()),
-              //           onChanged: (value) {
-              //             if (value.length == 1) {
-              //               node.nextFocus();
-              //             }
-              //           },
-              //         ),
-              //       ),
-              //       const SizedBox(
-              //         width: 10,
-              //       ),
-              //       Expanded(
-              //         child: TextFormField(
-              //           controller: _text5,
-              //           maxLength: 1,
-              //           keyboardType: TextInputType.number,
-              //           textInputAction: TextInputAction.next,
-              //           decoration:
-              //               const InputDecoration(border: OutlineInputBorder()),
-              //           onChanged: (value) {
-              //             if (value.length == 1) {
-              //               node.nextFocus();
-              //             }
-              //           },
-              //         ),
-              //       ),
-              //       const SizedBox(
-              //         width: 10,
-              //       ),
-              //       Expanded(
-              //         child: TextFormField(
-              //           controller: _text6,
-              //           maxLength: 1,
-              //           keyboardType: TextInputType.number,
-              //           textInputAction: TextInputAction.next,
-              //           decoration:
-              //               const InputDecoration(border: OutlineInputBorder()),
-              //           onChanged: (value) {
-              //             if (value.length == 1) {
-              //               // node.nextFocus();
-              //               if (value.length == 1) {
-              //                 if (_text1.text.length == 1) {
-              //                   if (_text2.text.length == 1) {
-              //                     if (_text3.text.length == 1) {
-              //                       if (_text4.text.length == 1) {
-              //                         if (_text5.text.length == 1) {
-              //                           if (_text6.text.length == 1) {
-              //                             String otp =
-              //                                 '${_text1.text}${_text2.text}${_text3.text}${_text4.text}${_text5.text}${_text6.text}';
-              //                             setState(() {
-              //                               _loading = true;
-              //                             });
-              //                             // Login
-              //                             phoneCredentials(context, otp);
-              //                           }
-              //                         }
-              //                       }
-              //                     }
-              //                   }
-              //                 } else {
-              //                   setState(() {
-              //                     _loading = false;
-              //                   });
-              //                 }
-              //               }
-              //             }
-              //           },
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              //   const SizedBox(
-              //     height: 18,
-              //   ),
-              //   if (_loading)
-              //     Align(
-              //       alignment: Alignment.center,
-              //       child: SizedBox(
-              //         width: 50,
-              //         // height: 100,
-              //         child: LinearProgressIndicator(
-              //           // value: ,
-              //           backgroundColor: Colors.grey.shade200,
-              //           valueColor: AlwaysStoppedAnimation<Color>(
-              //               Theme.of(context).primaryColor),
-              //         ),
-              //       ),
-              //     ),
-              //   SizedBox(
-              //     height: 18,
-              //   ),
-              //   Text(
-              //     error,
-              //     style: TextStyle(color: Colors.red, fontSize: 14),
-              //   )
-              // ],
-              // children: [
-              //   PinCodeTextField(
-              //     length: 6,
-              //     keyboardType: TextInputType.number,
-              //     obscureText: false,
-              //     //  errorController errorController.add(ErrorAnimationType.shake);
-              //     animationType: AnimationType.fade,
-              //     pinTheme: PinTheme(
-              //       shape: PinCodeFieldShape.box,
-              //       borderRadius: BorderRadius.circular(5),
-              //       fieldHeight: 50,
-              //       fieldWidth: 40,
-              //       activeFillColor: Colors.orange,
-              //       activeColor: Colors.white,
-              //       inactiveFillColor: Colors.grey.shade200,
-              //     ),
-              //     animationDuration: const Duration(milliseconds: 100),
-              //     backgroundColor: Colors.grey.shade50,
-              //     enableActiveFill: true,
-              //     controller: textEditingController,
-              //     onCompleted: (v) {
-              //       debugPrint("Completed");
-              //     },
-              //     onChanged: (value) {
-              //       debugPrint(value);
-              //       setState(() {
-              //         currentText = value;
-              //       });
-              //     },
-              //     beforeTextPaste: (text) {
-              //       return true;
-              //     },
-              //     appContext: context,
-              //   ),
-              // ]),
               children: [
+                const SizedBox(
+                  height: 40,
+                ),
+                CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Colors.red.shade200,
+                  child: const Icon(
+                    CupertinoIcons.person_alt_circle,
+                    color: Colors.red,
+                    size: 60,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "Welcome Back",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: RichText(
+                        text: TextSpan(
+                          text: 'We sent a 6-digit code to your phone number.',
+                          style:
+                              const TextStyle(color: Colors.grey, fontSize: 12),
+                          children: [
+                            TextSpan(
+                                text: widget.number,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 12)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                        onTap: () {
+                          // Navigator.pop(context);
+                          // Sending the user back to the auth screen as i was not able to pop the context
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const PhoneAuthScreen()));
+                        },
+                        child: const Icon(Icons.edit))
+                  ],
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
                 PinCodeTextField(
                   appContext: context,
                   onCompleted: (v) {

@@ -37,13 +37,20 @@ class _OTPScreenState extends State<OTPScreen> {
         Navigator.pushReplacementNamed(context, LocationScreen.id);
       } else {
         print("Login failed.");
-        setState(() {
-          error = 'Login failed.';
-        });
+        if (mounted) {
+          setState(() {
+            error = 'Login failed.';
+          });
+        }
       }
     } catch (e) {
       print("Error: ${e.toString()}");
-      error = 'Invalid OTP.';
+      if (mounted) {
+        setState(() {
+          error = 'Invalid OTP.';
+          _loading = false;
+        });
+      }
     }
   }
 

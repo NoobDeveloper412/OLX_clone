@@ -9,8 +9,6 @@ class LocationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime _lastQuitTime = DateTime.now();
-
     return WillPopScope(
       onWillPop: () async {
         final shouldPop = await showDialog<bool>(

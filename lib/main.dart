@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:olx_clone/screens/authentication/otp_screen.dart';
 import 'package:olx_clone/screens/authentication/phoneAuthScreen.dart';
 import 'package:olx_clone/screens/location_screen.dart';
 import 'package:olx_clone/screens/login_screen.dart';
@@ -28,7 +29,11 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               theme: ThemeData(primaryColor: Colors.orange, fontFamily: 'Lato'),
-              home: LoginScreen(),
+              // home: LoginScreen(),
+              home: OTPScreen(
+                number: '03036175724',
+                verificationId: 'veriId',
+              ),
               // Initial Routing is not working for some reason
               routes: {
                 LoginScreen.id: (context) => LoginScreen(),

@@ -29,11 +29,11 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               theme: ThemeData(primaryColor: Colors.orange, fontFamily: 'Lato'),
-              // home: LoginScreen(),
-              home: OTPScreen(
-                number: '03036175724',
-                verificationId: 'veriId',
-              ),
+              home: LoginScreen(),
+              // home: OTPScreen(
+              //   number: '03036175724',
+              //   verificationId: 'veriId',
+              // ),
               // Initial Routing is not working for some reason
               routes: {
                 LoginScreen.id: (context) => LoginScreen(),

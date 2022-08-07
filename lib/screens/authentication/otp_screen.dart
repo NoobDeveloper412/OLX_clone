@@ -155,7 +155,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   ],
                 ),
                 const SizedBox(
-                  height: 12,
+                  height: 20,
                 ),
                 PinCodeTextField(
                   appContext: context,
@@ -175,7 +175,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   },
                   pastedTextStyle: TextStyle(
                     color: Colors.green.shade600,
-                    fontWeight: FontWeight.bold,
+                    // fontWeight: FontWeight.bold,
                   ),
                   length: 6,
                   obscureText: false,
@@ -188,17 +188,22 @@ class _OTPScreenState extends State<OTPScreen> {
                       return null;
                     }
                   },
+
                   pinTheme: PinTheme(
                     shape: PinCodeFieldShape.box,
+                    selectedFillColor: Colors.white70,
+                    selectedColor: Colors.white,
                     borderRadius: BorderRadius.circular(5),
                     fieldHeight: 60,
                     fieldWidth: 50,
-                    activeFillColor: hasError ? Colors.red : Colors.orange,
+                    inactiveFillColor: Colors.grey.shade50,
+                    activeFillColor:
+                        hasError ? Colors.red : Colors.grey.shade50,
                   ),
                   cursorColor: Colors.black,
                   animationDuration: Duration(milliseconds: 300),
                   textStyle: TextStyle(fontSize: 20, height: 1.6),
-                  backgroundColor: Colors.blue.shade50,
+                  backgroundColor: Colors.white,
                   enableActiveFill: true,
                   errorAnimationController:
                       errorController, // This will shake the pin code field
@@ -211,7 +216,6 @@ class _OTPScreenState extends State<OTPScreen> {
                       blurRadius: 10,
                     )
                   ],
-
                   beforeTextPaste: (text) {
                     print("Allowing to paste $text");
                     //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.

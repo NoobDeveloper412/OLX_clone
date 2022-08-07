@@ -13,6 +13,8 @@ class OTPScreen extends StatefulWidget {
 }
 
 class _OTPScreenState extends State<OTPScreen> {
+  bool _loading = false;
+  String error = '';
   var _text1 = TextEditingController();
   var _text2 = TextEditingController();
   var _text3 = TextEditingController();
@@ -35,9 +37,13 @@ class _OTPScreenState extends State<OTPScreen> {
         Navigator.pushReplacementNamed(context, LocationScreen.id);
       } else {
         print("Login failed.");
+        setState(() {
+          error = 'Login failed.';
+        });
       }
     } catch (e) {
       print("Error: ${e.toString()}");
+      error = 'Invalid OTP.';
     }
   }
 
@@ -60,7 +66,7 @@ class _OTPScreenState extends State<OTPScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             CircleAvatar(
@@ -72,14 +78,14 @@ class _OTPScreenState extends State<OTPScreen> {
                 size: 60,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               "Welcome Back",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -88,11 +94,11 @@ class _OTPScreenState extends State<OTPScreen> {
                   child: RichText(
                     text: TextSpan(
                       text: 'We sent a 6-digit code to your phone number.',
-                      style: TextStyle(color: Colors.grey, fontSize: 12),
+                      style: const TextStyle(color: Colors.grey, fontSize: 12),
                       children: [
                         TextSpan(
                             text: widget.number,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                                 fontSize: 12)),
@@ -107,12 +113,12 @@ class _OTPScreenState extends State<OTPScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => PhoneAuthScreen()));
+                              builder: (context) => const PhoneAuthScreen()));
                     },
-                    child: Icon(Icons.edit))
+                    child: const Icon(Icons.edit))
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Row(
@@ -124,7 +130,8 @@ class _OTPScreenState extends State<OTPScreen> {
                     // style: Decoration(),
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    decoration:
+                        const InputDecoration(border: OutlineInputBorder()),
                     onChanged: (value) {
                       if (value.length == 1) {
                         node.nextFocus();
@@ -132,7 +139,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Expanded(
@@ -141,7 +148,8 @@ class _OTPScreenState extends State<OTPScreen> {
                     maxLength: 1,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    decoration:
+                        const InputDecoration(border: OutlineInputBorder()),
                     onChanged: (value) {
                       if (value.length == 1) {
                         node.nextFocus();
@@ -149,7 +157,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Expanded(
@@ -158,7 +166,8 @@ class _OTPScreenState extends State<OTPScreen> {
                     maxLength: 1,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    decoration:
+                        const InputDecoration(border: OutlineInputBorder()),
                     onChanged: (value) {
                       if (value.length == 1) {
                         node.nextFocus();
@@ -166,7 +175,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Expanded(
@@ -175,7 +184,8 @@ class _OTPScreenState extends State<OTPScreen> {
                     maxLength: 1,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    decoration:
+                        const InputDecoration(border: OutlineInputBorder()),
                     onChanged: (value) {
                       if (value.length == 1) {
                         node.nextFocus();
@@ -183,7 +193,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Expanded(
@@ -192,7 +202,8 @@ class _OTPScreenState extends State<OTPScreen> {
                     maxLength: 1,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    decoration:
+                        const InputDecoration(border: OutlineInputBorder()),
                     onChanged: (value) {
                       if (value.length == 1) {
                         node.nextFocus();
@@ -200,7 +211,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Expanded(
@@ -209,7 +220,8 @@ class _OTPScreenState extends State<OTPScreen> {
                     maxLength: 1,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    decoration:
+                        const InputDecoration(border: OutlineInputBorder()),
                     onChanged: (value) {
                       if (value.length == 1) {
                         // node.nextFocus();
@@ -222,7 +234,9 @@ class _OTPScreenState extends State<OTPScreen> {
                                     if (_text6.text.length == 1) {
                                       String otp =
                                           '${_text1.text}${_text2.text}${_text3.text}${_text4.text}${_text5.text}${_text6.text}';
-
+                                      setState(() {
+                                        _loading = true;
+                                      });
                                       // Login
                                       phoneCredentials(context, otp);
                                     }
@@ -230,6 +244,10 @@ class _OTPScreenState extends State<OTPScreen> {
                                 }
                               }
                             }
+                          } else {
+                            setState(() {
+                              _loading = false;
+                            });
                           }
                         }
                       }
@@ -237,6 +255,30 @@ class _OTPScreenState extends State<OTPScreen> {
                   ),
                 ),
               ],
+            ),
+            const SizedBox(
+              height: 18,
+            ),
+            if (_loading)
+              Align(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: 50,
+                  // height: 100,
+                  child: LinearProgressIndicator(
+                    // value: ,
+                    backgroundColor: Colors.grey.shade200,
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        Theme.of(context).primaryColor),
+                  ),
+                ),
+              ),
+            SizedBox(
+              height: 18,
+            ),
+            Text(
+              error,
+              style: TextStyle(color: Colors.red, fontSize: 14),
             )
           ],
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:olx_clone/screens/authentication/phoneAuthScreen.dart';
 
 class OTPScreen extends StatefulWidget {
   final String number;
@@ -69,7 +70,12 @@ class _OTPScreenState extends State<OTPScreen> {
                 ),
                 InkWell(
                     onTap: () {
-                      Navigator.pop(context);
+                      // Navigator.pop(context);
+                      // Sending the user back to the auth screen as i was not able to pop the context
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PhoneAuthScreen()));
                     },
                     child: Icon(Icons.edit))
               ],

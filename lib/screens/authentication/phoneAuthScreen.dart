@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:legacy_progress_dialog/legacy_progress_dialog.dart';
 import 'package:olx_clone/services/phoneAuthService.dart';
 
 class PhoneAuthScreen extends StatefulWidget {
@@ -32,12 +33,6 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
   // }
 
   final PhoneAuthService _service = PhoneAuthService();
-
-  @override
-  void dispose() {
-    // showAlertDialog(context);
-    super.dispose();
-  }
 
   // String counterText = '0';
   @override
@@ -137,10 +132,19 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                             Theme.of(context).primaryColor)
                         : MaterialStateProperty.all(Colors.grey)),
                 onPressed: () {
+                  ProgressDialog progressDialog = ProgressDialog(
+                    context: (context),
+                    textColor: Colors.orange,
+                    backgroundColor: Colors.white,
+                    loadingText: 'Please wait...',
+                    progressIndicatorColor: Theme.of(context).primaryColor,
+                    backgroundOverlay: Colors.white,
+                  );
+
                   String number =
                       '${countryCodeController.text}${phoneNumberController.text}';
+                  progressDialog.show();
                   _service.verifyPhoneNumber(context, number);
-                  // showAlertDialog(context);
                 },
                 child: const Padding(
                   padding: const EdgeInsets.all(12.0),

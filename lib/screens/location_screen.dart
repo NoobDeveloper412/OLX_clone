@@ -8,6 +8,7 @@ import 'package:olx_clone/screens/login_screen.dart';
 class LocationScreen extends StatelessWidget {
   const LocationScreen({Key? key}) : super(key: key);
   static const String id = 'location-screen';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

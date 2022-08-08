@@ -21,15 +21,10 @@ class _LoginScreenState extends State<LoginScreen> {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user != null) {
         Navigator.pushReplacementNamed(context, LocationScreen.id);
-      } else {
-        if (kDebugMode) {
-          print('User is signed out.');
-        }
       }
     });
     return WillPopScope(
       onWillPop: () {
-        print("ajdf;lk");
         return Future.value(false);
       },
       child: Scaffold(

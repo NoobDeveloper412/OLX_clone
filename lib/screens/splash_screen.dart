@@ -1,10 +1,38 @@
+import 'dart:async';
+import 'dart:html';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:olx_clone/screens/location_screen.dart';
+import 'package:olx_clone/screens/login_screen.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
+  static const String id = 'splash-screen';
   const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    Timer(Duration(seconds: 3), () {
+      FirebaseAuth.instance.authStateChanges().listen((User? user) {
+        if (user == null) {
+          Navigator.pushReplacementNamed(context, LoginScreen.id);
+        } else {
+          // getUserData();
+          Navigator.pushReplacementNamed(context, LocationScreen.id);
+        }
+      });
+    });
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +45,7 @@ class SplashScreen extends StatelessWidget {
       fontSize: 30.0,
       fontFamily: 'Horizon',
     );
+
     return Scaffold(
         backgroundColor: Colors.white,
         body: Center(
@@ -32,22 +61,12 @@ class SplashScreen extends StatelessWidget {
             AnimatedTextKit(
               animatedTexts: [
                 ColorizeAnimatedText(
-                  'Buy or Sell',
-                  textStyle: colorizeTextStyle,
-                  colors: colorizeColors,
-                ),
-                ColorizeAnimatedText(
-                  'Bill Gates',
-                  textStyle: colorizeTextStyle,
-                  colors: colorizeColors,
-                ),
-                ColorizeAnimatedText(
-                  'Steve Jobs',
+                  'OLX',
                   textStyle: colorizeTextStyle,
                   colors: colorizeColors,
                 ),
               ],
-              isRepeatingAnimation: true,
+              isRepeatingAnimation: false,
               onTap: () {
                 print("Tap Event");
               },

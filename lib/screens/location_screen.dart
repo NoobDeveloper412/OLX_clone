@@ -15,7 +15,7 @@ class LocationScreen extends StatelessWidget {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: const Text('Do you want to go back?'),
+              title: const Text('Are you sure you want to exit?'),
               actionsAlignment: MainAxisAlignment.spaceBetween,
               actions: [
                 TextButton(

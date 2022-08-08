@@ -17,31 +17,43 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: Future.delayed(const Duration(seconds: 3)),
-        builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return MaterialApp(
-              home: SplashScreen(),
-              debugShowCheckedModeBanner: false,
-            );
-          } else {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(primaryColor: Colors.orange, fontFamily: 'Lato'),
-              home: LoginScreen(),
-              // home: OTPScreen(
-              //   number: '03036175724',
-              //   verificationId: 'veriId',
-              // ),
-              // Initial Routing is not working for some reason
-              routes: {
-                LoginScreen.id: (context) => LoginScreen(),
-                PhoneAuthScreen.id: (context) => PhoneAuthScreen(),
-                LocationScreen.id: (context) => LocationScreen(),
-              },
-            );
-          }
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primaryColor: Colors.orange, fontFamily: 'Lato'),
+        initialRoute: SplashScreen.id,
+        routes: {
+          LoginScreen.id: (context) => LoginScreen(),
+          SplashScreen.id: (context) => SplashScreen(),
+          PhoneAuthScreen.id: (context) => PhoneAuthScreen(),
+          LocationScreen.id: (context) => LocationScreen(),
         });
+
+    // FutureBuilder(
+    //     future: Future.delayed(const Duration(seconds: 3)),
+    //     builder: (context, AsyncSnapshot snapshot) {
+    //       if (snapshot.connectionState == ConnectionState.waiting) {
+    //         return MaterialApp(
+    //           home: SplashScreen(),
+    //           debugShowCheckedModeBanner: false,
+    //         );
+    //       } else {
+    //         return MaterialApp(
+    //           debugShowCheckedModeBanner: false,
+    //           theme: ThemeData(primaryColor: Colors.orange, fontFamily: 'Lato'),
+
+    //           home: LoginScreen(),
+    //           // home: OTPScreen(
+    //           //   number: '03036175724',
+    //           //   verificationId: 'veriId',
+    //           // ),
+    //           // Initial Routing is not working for some reason
+    //           routes: {
+    //             LoginScreen.id: (context) => LoginScreen(),
+    //             PhoneAuthScreen.id: (context) => PhoneAuthScreen(),
+    //             LocationScreen.id: (context) => LocationScreen(),
+    //           },
+    //         );
+    //       }
+    //     });
   }
 }

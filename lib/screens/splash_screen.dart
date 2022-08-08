@@ -1,11 +1,8 @@
 import 'dart:async';
-import 'dart:html';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:olx_clone/screens/location_screen.dart';
 import 'package:olx_clone/screens/login_screen.dart';
 

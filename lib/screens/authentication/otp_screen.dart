@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:olx_clone/screens/authentication/phoneAuthScreen.dart';
 import 'package:olx_clone/screens/location_screen.dart';
+import 'package:olx_clone/services/phoneAuthService.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPScreen extends StatefulWidget {
@@ -24,6 +27,8 @@ class _OTPScreenState extends State<OTPScreen> {
   TextEditingController textEditingController = TextEditingController();
   String currentText = "";
 
+  PhoneAuthService _services = PhoneAuthService();
+
   Future<void> phoneCredentials(BuildContext context, String otp) async {
     FirebaseAuth _auth = FirebaseAuth.instance;
     try {
@@ -36,7 +41,7 @@ class _OTPScreenState extends State<OTPScreen> {
 
       if (user != null) {
         // Signin
-        Navigator.pushReplacementNamed(context, LocationScreen.id);
+        _services.addUser(context);
       } else {
         print("Login failed.");
         if (mounted) {

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:olx_clone/screens/duh.dart';
 import 'package:olx_clone/screens/location_screen.dart';
 import 'package:olx_clone/screens/login_screen.dart';
 
@@ -17,13 +18,14 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       FirebaseAuth.instance.authStateChanges().listen((User? user) {
         if (user == null) {
           Navigator.pushReplacementNamed(context, LoginScreen.id);
         } else {
-          // getUserData();
           Navigator.pushReplacementNamed(context, LocationScreen.id);
+          // Navigator.push(
+          //     context, MaterialPageRoute(builder: (context) => DUH()));
         }
       });
     });

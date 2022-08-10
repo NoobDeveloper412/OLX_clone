@@ -8,12 +8,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:olx_clone/screens/authentication/phoneAuthScreen.dart';
+import 'package:olx_clone/screens/duh.dart';
 import 'package:olx_clone/screens/location_screen.dart';
 import 'package:olx_clone/services/phoneAuthService.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPScreen extends StatefulWidget {
   final String number, verificationId;
+  static const String id = 'otp-screen';
 
   OTPScreen({required this.number, required this.verificationId});
   @override
@@ -38,10 +40,11 @@ class _OTPScreenState extends State<OTPScreen> {
       );
 
       final User? user = (await _auth.signInWithCredential(credential)).user;
-
       if (user != null) {
         // Signin
-        _services.addUser(context);
+        if (mounted) {
+          _services.addUser(user);
+        }
       } else {
         print("Login failed.");
         if (mounted) {

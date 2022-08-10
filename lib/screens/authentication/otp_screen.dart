@@ -8,7 +8,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:olx_clone/screens/authentication/phoneAuthScreen.dart';
-import 'package:olx_clone/screens/duh.dart';
 import 'package:olx_clone/screens/location_screen.dart';
 import 'package:olx_clone/services/phoneAuthService.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';

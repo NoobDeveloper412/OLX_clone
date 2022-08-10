@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:olx_clone/screens/duh.dart';
 import 'package:olx_clone/screens/location_screen.dart';
 import 'package:olx_clone/screens/login_screen.dart';
 
@@ -25,11 +24,9 @@ class _SplashScreenState extends State<SplashScreen> {
         } else {
           Navigator.pushReplacementNamed(context, LocationScreen.id);
           // Navigator.push(
-          //     context, MaterialPageRoute(builder: (context) => DUH()));
         }
       });
     });
-    // TODO: implement initState
     super.initState();
   }
 

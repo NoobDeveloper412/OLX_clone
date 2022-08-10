@@ -15,29 +15,14 @@ class PhoneAuthService {
 
     // Call the user's CollectionReference to add a new user
     return users.doc(user.uid).set({
-      'uid': user.uid, // John Doe
-      'email': user.email, // Stokes and Sons
-      'phoneNumber': user.phoneNumber // 42
+      'uid': user.uid,
+      'email': user.email,
+      'phoneNumber': user.phoneNumber
     }).then((value) {
       Navigator.pushReplacementNamed(context, LocationScreen.id);
       // ignore: avoid_print, invalid_return_type_for_catch_error
     }).catchError((error) => print("Failed to add user: $error"));
   }
-
-  // User? user = FirebaseAuth.instance.currentUser;
-  // CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-  // Future<void> addUser(context) {
-  //   // Call the user's CollectionReference to add a new user
-  //   return users.doc(user?.uid).set({
-  //     'uid': user!.uid, // John Doe
-  //     'mobile': user!.phoneNumber, // Stokes and Sons
-  //     'email': user!.email // 42
-  //   }).then((value) {
-  //     Navigator.pushReplacementNamed(context, LocationScreen.id);
-  //     // ignore: avoid_print
-  //   }).catchError((error) => print("Failed to add user: $error"));
-  // }
 
   Future<void> verifyPhoneNumber(BuildContext context, number) async {
     final PhoneVerificationCompleted verificationCompleted =

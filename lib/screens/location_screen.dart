@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:olx_clone/screens/login_screen.dart';
 
@@ -38,15 +37,17 @@ class LocationScreen extends StatelessWidget {
         // return false;
       },
       child: Scaffold(
-        body: Center(
-          child: ElevatedButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut().then((value) {
-                  Navigator.pushReplacementNamed(context, LoginScreen.id);
-                });
-              },
-              child: Text('SignOut')),
-        ),
+        backgroundColor: Colors.white,
+        body: Column(children: [
+          Image.asset('assets/images/location.jpg'),
+          const SizedBox(height: 20),
+          const Text(
+            'Please select your location',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+        ]),
       ),
     );
   }

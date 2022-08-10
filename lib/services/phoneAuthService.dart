@@ -10,18 +10,18 @@ import 'package:olx_clone/screens/location_screen.dart';
 class PhoneAuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  Future<void> addUser(user) {
+  Future<void> addUser(context, user) {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
 
     // Call the user's CollectionReference to add a new user
-    return users
-        .add({
-          'uid': user.uid, // John Doe
-          'email': user.email, // Stokes and Sons
-          'phoneNumber': user.phoneNumber // 42
-        })
-        .then((value) => print("User Added"))
-        .catchError((error) => print("Failed to add user: $error"));
+    return users.doc(user.uid).set({
+      'uid': user.uid, // John Doe
+      'email': user.email, // Stokes and Sons
+      'phoneNumber': user.phoneNumber // 42
+    }).then((value) {
+      Navigator.pushReplacementNamed(context, LocationScreen.id);
+      // ignore: avoid_print, invalid_return_type_for_catch_error
+    }).catchError((error) => print("Failed to add user: $error"));
   }
 
   // User? user = FirebaseAuth.instance.currentUser;

@@ -17,6 +17,7 @@ dependencies:
   legacy_progress_dialog: ^0.1.2
   pin_code_fields: ^7.4.0
   cloud_firestore: ^3.4.3
+  location: ^4.4.0
 
 dev_dependencies:
   flutter_test:

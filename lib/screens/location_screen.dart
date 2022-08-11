@@ -12,6 +12,7 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
+  bool _loading = false;
   Location location = Location();
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;
@@ -92,28 +93,39 @@ class _LocationScreenState extends State<LocationScreen> {
             child: Row(
               children: [
                 Expanded(
-                  child: ElevatedButton.icon(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            Theme.of(context).primaryColor)),
-                    icon: const Icon(CupertinoIcons.location_fill),
-                    label: const Padding(
-                      padding: EdgeInsets.only(top: 15, bottom: 15),
-                      child: Text('Around me'),
-                    ),
-                    onPressed: () {
-                      getLocation().then((value) {
-                        if (value != null) {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => HomeScreen(
-                                        _locationData,
-                                      )));
-                        }
-                      });
-                    },
-                  ),
+                  child: _loading
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Theme.of(context).primaryColor),
+                          ),
+                        )
+                      : ElevatedButton.icon(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Theme.of(context).primaryColor)),
+                          icon: const Icon(CupertinoIcons.location_fill),
+                          label: const Padding(
+                            padding: EdgeInsets.only(top: 15, bottom: 15),
+                            child: Text('Around me'),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _loading = true;
+                            });
+                            getLocation().then((value) {
+                              if (value != null) {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            HomeScreen(
+                                              _locationData,
+                                            )));
+                              }
+                            });
+                          },
+                        ),
                 ),
               ],
             ),

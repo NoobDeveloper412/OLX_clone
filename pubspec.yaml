@@ -18,6 +18,7 @@ dependencies:
   pin_code_fields: ^7.4.0
   cloud_firestore: ^3.4.3
   location: ^4.4.0
+  geocoder: ^0.2.1
 
 dev_dependencies:
   flutter_test:

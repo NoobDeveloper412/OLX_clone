@@ -42,7 +42,7 @@ class _OTPScreenState extends State<OTPScreen> {
       if (user != null) {
         // Signin
         if (mounted) {
-          _services.addUser(context, user);
+          _services.addUser(context, user, user.uid);
         }
       } else {
         print("Login failed.");

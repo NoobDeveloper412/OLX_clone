@@ -18,7 +18,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String address = 'Pakistan';
   Future<String> getAddress() async {
-    final coordinates = Coordinates(1.34, 23.2);
+    final coordinates = Coordinates(
+        widget.locationData.latitude, widget.locationData.longitude);
     var addresses =
         await Geocoder.local.findAddressesFromCoordinates(coordinates);
     var first = addresses.first;
@@ -52,11 +53,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.black,
                     size: 18,
                   ),
-                  Text(address,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold)),
+                  Flexible(
+                    child: Text(address,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold)),
+                  ),
                   Icon(
                     Icons.keyboard_arrow_down_outlined,
                     color: Colors.black,

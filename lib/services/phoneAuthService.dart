@@ -10,12 +10,11 @@ import 'package:olx_clone/screens/location_screen.dart';
 class PhoneAuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  Future<void> addUser(context, user) async {
+  Future<void> addUser(context, user, uid) async {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
 
     // To check Whether the user exists already or not
-    final QuerySnapshot result =
-        await users.where('uid', isEqualTo: user.uid).get();
+    final QuerySnapshot result = await users.where('uid', isEqualTo: uid).get();
 
     final List<DocumentSnapshot> documents = result.docs;
     if (documents.isEmpty) {

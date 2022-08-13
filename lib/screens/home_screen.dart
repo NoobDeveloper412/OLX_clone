@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:location/location.dart';
+import 'package:olx_clone/screens/login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home-screen';
@@ -73,13 +75,14 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: const Center(
-        // child: RaisedButton(
-        //   onPressed: () {
-        //     Navigator.pushNamed(context, LoginScreen.id);
-        //   },
-        child: Text('Login'),
-        // ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            FirebaseAuth.instance.signOut().then((value) =>
+                Navigator.pushReplacementNamed(context, LoginScreen.id));
+          },
+          child: Text('Sign Out'),
+        ),
       ),
     );
   }

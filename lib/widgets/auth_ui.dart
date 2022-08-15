@@ -6,6 +6,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:olx_clone/screens/authentication/emailAuthScreen.dart';
 import 'package:olx_clone/screens/authentication/google_auth.dart';
 import 'package:olx_clone/screens/authentication/phoneAuthScreen.dart';
 import 'package:olx_clone/services/phoneAuthService.dart';
@@ -62,11 +63,6 @@ class AuthUI extends StatelessWidget {
         SizedBox(
           height: 5,
         ),
-        SignInButton(
-          Buttons.FacebookNew,
-          text: "Sign up with Facebook",
-          onPressed: () {},
-        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
@@ -74,14 +70,24 @@ class AuthUI extends StatelessWidget {
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            'Login with Email',
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                decoration: TextDecoration.underline),
+        InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, EmailAuthScreen.id);
+          },
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+              color: Colors.white,
+            ))),
+            child: Text(
+              'Login with Email',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline),
+            ),
           ),
         ),
       ],

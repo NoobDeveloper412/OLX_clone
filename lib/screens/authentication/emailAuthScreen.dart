@@ -104,6 +104,17 @@ class _EmailAuthScreeenState extends State<EmailAuthScreen> {
                 },
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.only(left: 10),
+                  suffixIcon: validate
+                      ? IconButton(
+                          icon: Icon(Icons.clear),
+                          onPressed: () {
+                            setState(() {
+                              _passwordController.clear();
+                              validate = false;
+                            });
+                          },
+                        )
+                      : null,
                   labelText: 'Email',
                   filled: true,
                   fillColor: Colors.grey.shade300,

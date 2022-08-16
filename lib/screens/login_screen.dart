@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           )
                         ],
                       ))),
-              Expanded(child: Container(child: const AuthUI())),
+              const Expanded(child: AuthUI()),
               const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(

@@ -22,6 +22,9 @@ dependencies:
   google_sign_in: ^5.4.1
   flutter_facebook_login: ^3.0.0
   email_validator: ^2.1.17
+  animated_textformfields: ^1.0.1
+  text_form_field_wrapper: ^1.0.0
+  validation_textformfield: ^2.2.5
 
 dev_dependencies:
   flutter_test:

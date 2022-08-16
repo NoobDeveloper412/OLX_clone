@@ -56,6 +56,7 @@ class AuthUI extends StatelessWidget {
                 await GoogleAuthentication.signInWithGoogle(context: context);
             if (user != null) {
               PhoneAuthService _authentication = PhoneAuthService();
+              // ignore: use_build_context_synchronously
               _authentication.addUser(context, user, user.uid);
             }
           },
@@ -86,7 +87,7 @@ class AuthUI extends StatelessWidget {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.underline),
+                  decoration: TextDecoration.none),
             ),
           ),
         ),

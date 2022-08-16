@@ -5,17 +5,18 @@ import 'package:olx_clone/screens/location_screen.dart';
 
 class EmailAuthentication {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
-  Future<Object> getAdminCredentials({context, isLog, password, email}) async {
+  Future<Object> getAdminCredentials(
+      {context, isLog = true, password, email}) async {
     DocumentSnapshot result = await users.doc(email).get();
     if (isLog) {
-      emailSignup(email, password, context);
+      emailLogin(email, password, context);
     } else {
       if (result.exists) {
         return ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('User already exists!')),
         );
       } else {
-        emailLogin(email, password, context);
+        emailSignup(email, password, context);
       }
     }
     return result;

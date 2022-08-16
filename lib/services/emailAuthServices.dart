@@ -5,8 +5,7 @@ import 'package:olx_clone/screens/location_screen.dart';
 
 class EmailAuthentication {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
-  Future<Object> getAdminCredentials(
-      {context, isLog = true, password, email}) async {
+  Future<Object> getAdminCredentials({context, isLog, password, email}) async {
     DocumentSnapshot result = await users.doc(email).get();
     if (isLog) {
       emailLogin(email, password, context);
@@ -26,9 +25,7 @@ class EmailAuthentication {
     try {
       UserCredential credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      if (credential.user!.uid != null) {
-        Navigator.pushNamed(context, LocationScreen.id);
-      }
+      Navigator.pushNamed(context, LocationScreen.id);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         return ScaffoldMessenger.of(context).showSnackBar(

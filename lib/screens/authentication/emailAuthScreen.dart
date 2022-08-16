@@ -19,7 +19,7 @@ class EmailAuthScreen extends StatefulWidget {
 class _EmailAuthScreeenState extends State<EmailAuthScreen> {
   bool validate = false;
   final _formKey = GlobalKey<FormState>();
-  bool _login = true;
+  bool _login = false;
   bool _loading = false;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -36,7 +36,7 @@ class _EmailAuthScreeenState extends State<EmailAuthScreen> {
       _services
           .getAdminCredentials(
         context: context,
-        isLog: true,
+        isLog: _login,
         password: _passwordController.text,
         email: _emailController.text,
       )

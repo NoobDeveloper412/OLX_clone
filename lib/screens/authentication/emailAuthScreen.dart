@@ -17,11 +17,11 @@ class EmailAuthScreen extends StatefulWidget {
 class _EmailAuthScreeenState extends State<EmailAuthScreen> {
   bool validate = false;
   final _formKey = GlobalKey<FormState>();
-  bool _login = false;
+  bool _login = true;
   bool _loading = false;
-  var _emailController = TextEditingController();
-  var _passwordController = TextEditingController();
-  EmailAuthentication _services = EmailAuthentication();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final EmailAuthentication _services = EmailAuthentication();
 
   _validateEmail() {
     if (_formKey.currentState!.validate()) {
@@ -32,7 +32,7 @@ class _EmailAuthScreeenState extends State<EmailAuthScreen> {
       _services
           .getAdminCredentials(
         context: context,
-        isLog: _login,
+        isLog: true,
         password: _passwordController.text,
         email: _emailController.text,
       )
@@ -104,17 +104,6 @@ class _EmailAuthScreeenState extends State<EmailAuthScreen> {
                 },
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.only(left: 10),
-                  suffixIcon: validate
-                      ? IconButton(
-                          icon: Icon(Icons.clear),
-                          onPressed: () {
-                            setState(() {
-                              _passwordController.clear();
-                              validate = false;
-                            });
-                          },
-                        )
-                      : null,
                   labelText: 'Email',
                   filled: true,
                   fillColor: Colors.grey.shade300,
@@ -131,6 +120,17 @@ class _EmailAuthScreeenState extends State<EmailAuthScreen> {
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.only(left: 10),
                     labelText: 'Password',
+                    suffixIcon: validate
+                        ? IconButton(
+                            icon: Icon(Icons.clear),
+                            onPressed: () {
+                              setState(() {
+                                _passwordController.clear();
+                                validate = false;
+                              });
+                            },
+                          )
+                        : null,
                     filled: true,
                     fillColor: Colors.grey.shade300,
                     border: OutlineInputBorder(
@@ -151,7 +151,7 @@ class _EmailAuthScreeenState extends State<EmailAuthScreen> {
                       }
                     }
                   }),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(

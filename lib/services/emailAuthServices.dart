@@ -5,25 +5,25 @@ import 'package:olx_clone/screens/location_screen.dart';
 
 class EmailAuthentication {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
-  Future<Object?> getAdminCredentials({context, isLog, password, email}) async {
-    DocumentSnapshot _result = await users.doc(email).get();
+  Future<Object> getAdminCredentials({context, isLog, password, email}) async {
+    DocumentSnapshot result = await users.doc(email).get();
     if (isLog) {
-      emailLogin(email, password, context);
+      emailSignup(email, password, context);
     } else {
-      if (_result.exists) {
+      if (result.exists) {
         return ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('User already exists!')),
         );
       } else {
-        emailSignup(email, password, context);
+        emailLogin(email, password, context);
       }
     }
-    return _result;
+    return result;
   }
 
   emailLogin(email, password, context) async {
     try {
-      final credential = await FirebaseAuth.instance
+      UserCredential credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       if (credential.user!.uid != null) {
         Navigator.pushNamed(context, LocationScreen.id);
@@ -43,11 +43,12 @@ class EmailAuthentication {
 
   emailSignup(email, password, context) async {
     try {
-      final credential =
+      UserCredential credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+
       if (credential.user?.uid != null) {
         return users.doc(credential.user!.email).set({
           'email': credential.user!.email,

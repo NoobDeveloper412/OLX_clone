@@ -86,7 +86,7 @@ class _EmailAuthScreeenState extends State<EmailAuthScreen> {
                       const SizedBox(
                         height: 12,
                       ),
-                      Text(_login ? "Login" : "signup",
+                      Text(_login ? "Login" : "Signup",
                           style: const TextStyle(
                               fontSize: 30, fontWeight: FontWeight.bold)),
                       const SizedBox(
@@ -290,7 +290,7 @@ class _EmailAuthScreeenState extends State<EmailAuthScreen> {
                           ),
                         )
                       : Text(
-                          _login ? "login" : "signup",
+                          _login ? "Login" : "Signup",
                           style: const TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),

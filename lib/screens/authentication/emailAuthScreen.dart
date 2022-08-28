@@ -232,6 +232,14 @@ class _EmailAuthScreeenState extends State<EmailAuthScreen> {
               const SizedBox(
                 height: 10,
               ),
+              const Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  'Forgot Password?',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.blue),
+                ),
+              ),
               Row(
                 children: [
                   const SizedBox(

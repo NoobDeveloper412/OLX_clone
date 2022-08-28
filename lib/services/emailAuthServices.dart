@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:olx_clone/screens/authentication/emailVerificationScreen.dart';
 import 'package:olx_clone/screens/location_screen.dart';
 
 class EmailAuthentication {
@@ -52,8 +53,11 @@ class EmailAuthentication {
           'email': credential.user!.email,
           'uid': credential.user!.uid,
           'phoneNumber': null,
-        }).then((value) {
-          Navigator.pushReplacementNamed(context, LocationScreen.id);
+        }).then((value) async {
+          // Verifying before redirecting to the locationScreen
+          await credential.user!.sendEmailVerification().then((value) {
+            Navigator.pushReplacementNamed(context, EmailVerificationScreen.id);
+          });
         }).catchError((onError) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Error occured!')),

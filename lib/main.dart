@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:olx_clone/screens/authentication/emailAuthScreen.dart';
+import 'package:olx_clone/screens/authentication/emailVerificationScreen.dart';
 import 'package:olx_clone/screens/authentication/otp_screen.dart';
 import 'package:olx_clone/screens/authentication/phoneAuthScreen.dart';
 import 'package:olx_clone/screens/home_screen.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           PhoneAuthScreen.id: (context) => PhoneAuthScreen(),
           LocationScreen.id: (context) => LocationScreen(),
           EmailAuthScreen.id: (context) => EmailAuthScreen(),
-          // HomeScreen.id: (context) => HomeScreen(),
+          EmailVerificationScreen.id: (context) => EmailVerificationScreen(),
         });
 
     // FutureBuilder(

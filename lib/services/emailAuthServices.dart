@@ -40,7 +40,7 @@ class EmailAuthentication {
     }
   }
 
-  emailSignup(email, password, context) async {
+  emailSignup(email, password, buildContext) async {
     try {
       UserCredential credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -55,27 +55,28 @@ class EmailAuthentication {
           'phoneNumber': null,
         }).then((value) async {
           // Verifying before redirecting to the locationScreen
-          await credential.user!.sendEmailVerification().then((value) {
-            Navigator.pushReplacementNamed(context, EmailVerificationScreen.id);
+          credential.user!.sendEmailVerification().then((value) {
+            Navigator.of(buildContext).push(MaterialPageRoute(
+                builder: (buildContext) => EmailVerificationScreen()));
           });
         }).catchError((onError) {
-          ScaffoldMessenger.of(context).showSnackBar(
+          ScaffoldMessenger.of(buildContext).showSnackBar(
             const SnackBar(content: Text('Error occured!')),
           );
         });
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        return ScaffoldMessenger.of(context).showSnackBar(
+        return ScaffoldMessenger.of(buildContext).showSnackBar(
           const SnackBar(content: Text('The password is too weak.')),
         );
       } else if (e.code == 'email-already-in-use') {
-        return ScaffoldMessenger.of(context).showSnackBar(
+        return ScaffoldMessenger.of(buildContext).showSnackBar(
           const SnackBar(content: Text('Account already in use!')),
         );
       }
     } catch (e) {
-      return ScaffoldMessenger.of(context).showSnackBar(
+      return ScaffoldMessenger.of(buildContext).showSnackBar(
         SnackBar(content: Text(e.toString())),
       );
     }

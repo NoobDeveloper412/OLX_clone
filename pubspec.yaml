@@ -25,6 +25,7 @@ dependencies:
   animated_textformfields: ^1.0.1
   text_form_field_wrapper: ^1.0.0
   validation_textformfield: ^2.2.5
+  open_mail_app: ^0.4.5
 
 dev_dependencies:
   flutter_test:

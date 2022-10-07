@@ -25,6 +25,7 @@ class PhoneAuthService {
         'phoneNumber': user.phoneNumber
       }).then((value) {
         Navigator.pushReplacementNamed(context, LocationScreen.id);
+        // ignore: avoid_print
       }).catchError((error) => print("Failed to add user: $error"));
     } else {
       Navigator.pushReplacementNamed(context, LocationScreen.id);

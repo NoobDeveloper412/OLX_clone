@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
@@ -110,6 +112,7 @@ class _LocationScreenState extends State<LocationScreen> {
                             child: Text('Around me'),
                           ),
                           onPressed: () {
+                            FirebaseAuth.instance.signOut();
                             setState(() {
                               _loading = true;
                             });

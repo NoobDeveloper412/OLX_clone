@@ -74,8 +74,7 @@ class AuthUI extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            // Navigator.pushNamed(context, EmailAuthScreen.id);
-            Navigator.pushNamed(context, EmailVerificationScreen.id);
+            Navigator.pushNamed(context, EmailAuthScreen.id);
           },
           child: Container(
             padding: const EdgeInsets.all(8.0),

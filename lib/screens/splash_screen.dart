@@ -23,11 +23,15 @@ class _SplashScreenState extends State<SplashScreen> {
           Navigator.pushReplacementNamed(context, LoginScreen.id);
         } else {
           Navigator.pushReplacementNamed(context, LocationScreen.id);
-          // Navigator.push(
         }
       });
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override

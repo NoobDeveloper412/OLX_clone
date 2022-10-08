@@ -24,8 +24,35 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     });
     return WillPopScope(
-      onWillPop: () {
-        return Future.value(false);
+      // onWillPop: () {
+      //   return Future.value(false);
+      // },
+      onWillPop: () async {
+        final shouldPop = await showDialog<bool>(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Are you sure you want to exit?'),
+              actionsAlignment: MainAxisAlignment.spaceBetween,
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context, false);
+                  },
+                  child: const Text('No'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context, true);
+                  },
+                  child: const Text('Yes'),
+                ),
+              ],
+            );
+          },
+        );
+        return shouldPop!;
+        // return false;
       },
       child: Scaffold(
           backgroundColor: Colors.orange,

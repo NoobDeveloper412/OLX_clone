@@ -26,6 +26,8 @@ dependencies:
   text_form_field_wrapper: ^1.0.0
   validation_textformfield: ^2.2.5
   open_mail_app: ^0.4.5
+  country_state_city_pickers: ^0.0.4
+  csc_picker: ^0.2.6
 
 dev_dependencies:
   flutter_test:

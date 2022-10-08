@@ -1,10 +1,12 @@
 import 'package:animated_textformfields/animated_textformfield/animated_textformfield.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:legacy_progress_dialog/legacy_progress_dialog.dart';
+import 'package:olx_clone/screens/authentication/resetPasswordScreen.dart';
 import 'package:olx_clone/services/emailAuthServices.dart';
 import 'package:validation_textformfield/validation_textformfield.dart';
 
@@ -197,49 +199,21 @@ class _EmailAuthScreeenState extends State<EmailAuthScreen> {
                 passTextEditingController: _passwordController,
                 passwordMinLength: 5,
               ),
-              // AnimatedTextFormField(
-              //   cursorColor: Colors.orange,
-              //   backgroundColor: Colors.grey.shade100,
-              //   hintText: "Password",
 
-              //   controller: _passwordController,
-              //   // decoration: InputDecoration(
-              //   //   contentPadding: const EdgeInsets.only(left: 10),
-              //   //   labelText: 'Password',
-              //   //   suffixIcon: validate
-              //   //       ? IconButton(
-              //   //           icon: Icon(Icons.clear),
-              //   //           onPressed: () {
-              //   //             setState(() {
-              //   //               _passwordController.clear();
-              //   //               validate = false;
-              //   //             });
-              //   //           },
-              //   //         )
-              //   //       : null,
-              //   //   filled: true,
-              //   //   fillColor: Colors.grey.shade300,
-              //   //   border: OutlineInputBorder(
-              //   //     borderRadius: BorderRadius.circular(2),
-              //   //   ),
-              //   // ),
-              //   width: MediaQuery.of(context).size.width * 0.875,
-              //   height: 48.0,
-
-              //   focusNode: passwordFocusNode,
-              // ),
-
-              const SizedBox(
-                height: 10,
-              ),
-              const Align(
+              Align(
                 alignment: Alignment.centerRight,
-                child: Text(
-                  'Forgot Password?',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.blue),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, PasswordResetScreen.id);
+                  },
+                  child: Text(
+                    'Forgot Password?',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.blue),
+                  ),
                 ),
               ),
+
               Row(
                 children: [
                   const SizedBox(

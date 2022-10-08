@@ -4,6 +4,7 @@ import 'package:olx_clone/screens/authentication/emailAuthScreen.dart';
 import 'package:olx_clone/screens/authentication/emailVerificationScreen.dart';
 import 'package:olx_clone/screens/authentication/otp_screen.dart';
 import 'package:olx_clone/screens/authentication/phoneAuthScreen.dart';
+import 'package:olx_clone/screens/authentication/resetPasswordScreen.dart';
 import 'package:olx_clone/screens/home_screen.dart';
 import 'package:olx_clone/screens/location_screen.dart';
 import 'package:olx_clone/screens/login_screen.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
           LocationScreen.id: (context) => LocationScreen(),
           EmailAuthScreen.id: (context) => EmailAuthScreen(),
           EmailVerificationScreen.id: (context) => EmailVerificationScreen(),
+          PasswordResetScreen.id: (context) => PasswordResetScreen(),
         });
 
     // FutureBuilder(

@@ -55,9 +55,9 @@ class EmailAuthentication {
           'phoneNumber': null,
         }).then((value) async {
           // Verifying before redirecting to the locationScreen
-          credential.user!.sendEmailVerification().then((value) {
-            Navigator.of(buildContext).push(MaterialPageRoute(
-                builder: (buildContext) => EmailVerificationScreen()));
+          await credential.user!.sendEmailVerification().then((value) {
+            Navigator.pushReplacementNamed(
+                buildContext, EmailVerificationScreen.id);
           });
         }).catchError((onError) {
           ScaffoldMessenger.of(buildContext).showSnackBar(

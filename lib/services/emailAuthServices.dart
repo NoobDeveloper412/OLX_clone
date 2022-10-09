@@ -49,7 +49,7 @@ class EmailAuthentication {
       );
 
       if (credential.user?.uid != null) {
-        return users.doc(credential.user!.email).set({
+        return users.doc(credential.user!.uid).set({
           'email': credential.user!.email,
           'uid': credential.user!.uid,
           'phoneNumber': null,

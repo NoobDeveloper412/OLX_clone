@@ -3,8 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoder/geocoder.dart';
+import 'package:legacy_progress_dialog/legacy_progress_dialog.dart';
 import 'package:location/location.dart';
 import 'package:olx_clone/screens/home_screen.dart';
+import 'package:olx_clone/services/firebase_services.dart';
 
 class LocationScreen extends StatefulWidget {
   const LocationScreen({Key? key}) : super(key: key);
@@ -15,6 +18,7 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
+  FirebaseServices _services = FirebaseServices();
   bool _loading = false;
   Location location = Location();
   late bool _serviceEnabled;
@@ -24,7 +28,8 @@ class _LocationScreenState extends State<LocationScreen> {
   String? countryValue = "";
   String? stateValue = "";
   String? cityValue = "";
-  String? address = "";
+  String? _address;
+  String? manual_address = '';
 
   Future<LocationData?> getLocation() async {
     _serviceEnabled = await location.serviceEnabled();
@@ -42,126 +47,159 @@ class _LocationScreenState extends State<LocationScreen> {
         return null;
       }
     }
-    // setState(() async {
     _locationData = await location.getLocation();
-    // });
+    final coordinates =
+        Coordinates(_locationData.latitude, _locationData.longitude);
+    var addresses =
+        await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    var first = addresses.first;
+
+    setState(() {
+      _address = first.addressLine;
+      countryValue = first.countryName;
+    });
     return _locationData;
   }
 
   @override
   Widget build(BuildContext context) {
+    ProgressDialog progressDialog = ProgressDialog(
+      context: (context),
+      textColor: Colors.orange,
+      backgroundColor: Colors.white,
+      loadingText: 'Please wait...',
+      progressIndicatorColor: Theme.of(context).primaryColor,
+      backgroundOverlay: Colors.white,
+    );
+
     showBottomSheet(context) {
-      showModalBottomSheet(
-          isScrollControlled: true,
-          enableDrag: true,
-          context: context,
-          builder: (context) {
-            return SafeArea(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 26,
-                  ),
-                  AppBar(
-                    elevation: 1,
-                    automaticallyImplyLeading: false,
-                    iconTheme: const IconThemeData(
-                      color: Colors.black,
-                    ),
-                    backgroundColor: Colors.white,
-                    title: Row(children: [
-                      IconButton(
-                        icon: Icon(Icons.clear),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
+      getLocation().then((value) {
+        if (location != null) {
+          progressDialog.dismiss();
+          showModalBottomSheet(
+              isScrollControlled: true,
+              enableDrag: true,
+              context: context,
+              builder: (context) {
+                return SafeArea(
+                  child: Column(
+                    children: [
                       SizedBox(
-                        height: 10,
+                        height: 26,
                       ),
-                      Text(
-                        'Location',
-                        style: TextStyle(color: Colors.black),
+                      AppBar(
+                        elevation: 1,
+                        automaticallyImplyLeading: false,
+                        iconTheme: const IconThemeData(
+                          color: Colors.black,
+                        ),
+                        backgroundColor: Colors.white,
+                        title: Row(children: [
+                          IconButton(
+                            icon: Icon(Icons.clear),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Location',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ]),
                       ),
-                    ]),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(),
-                          borderRadius: BorderRadius.circular(6)),
-                      child: SizedBox(
-                        height: 40,
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            hintText: 'Search City, Area or Neighbourhood',
-                            hintStyle: TextStyle(color: Colors.grey),
-                            icon: Icon(Icons.search),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(6)),
+                          child: SizedBox(
+                            height: 40,
+                            child: TextFormField(
+                              decoration: const InputDecoration(
+                                hintText: 'Search City, Area or Neighbourhood',
+                                hintStyle: TextStyle(color: Colors.grey),
+                                icon: Icon(Icons.search),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    horizontalTitleGap: 8,
-                    leading: const Icon(
-                      Icons.my_location,
-                      color: Colors.blue,
-                    ),
-                    title: Text(
-                      'Use current location',
-                      style: TextStyle(
-                          color: Colors.blue, fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(
-                      'Enable Location',
-                      style: TextStyle(fontSize: 12),
-                    ),
-                  ),
-                  Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.grey.shade100,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 10, bottom: 4, top: 4.0),
-                        child: Text(
-                          "CHOOSE CITY",
-                          style: TextStyle(
-                              color: Colors.blueGrey.shade900, fontSize: 12),
+                      ListTile(
+                        onTap: () {},
+                        horizontalTitleGap: 8,
+                        leading: const Icon(
+                          Icons.my_location,
+                          color: Colors.blue,
                         ),
-                      )),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    child: CSCPicker(
-                      layout: Layout.vertical,
-                      defaultCountry: DefaultCountry.Pakistan,
-                      dropdownDecoration:
-                          const BoxDecoration(shape: BoxShape.rectangle),
-                      onCountryChanged: (value) {
-                        setState(() {
-                          countryValue = value;
-                        });
-                      },
-                      onStateChanged: (value) {
-                        setState(() {
-                          stateValue = value;
-                        });
-                      },
-                      onCityChanged: (value) {
-                        setState(() {
-                          cityValue = value;
-                          address =
-                              '$cityValue, $stateValue, ${countryValue!.substring(8)}';
-                        });
-                      },
-                    ),
+                        title: Text(
+                          'Use current location',
+                          style: TextStyle(
+                              color: Colors.blue, fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(
+                          location == null ? 'Enable Location' : _address!,
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ),
+                      Container(
+                          width: MediaQuery.of(context).size.width,
+                          color: Colors.grey.shade100,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, bottom: 4, top: 4.0),
+                            child: Text(
+                              "CHOOSE CITY",
+                              style: TextStyle(
+                                  color: Colors.blueGrey.shade900,
+                                  fontSize: 12),
+                            ),
+                          )),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        child: CSCPicker(
+                          layout: Layout.vertical,
+                          defaultCountry: DefaultCountry.Pakistan,
+                          dropdownDecoration:
+                              const BoxDecoration(shape: BoxShape.rectangle),
+                          onCountryChanged: (value) {
+                            setState(() {
+                              countryValue = value;
+                            });
+                          },
+                          onStateChanged: (value) {
+                            setState(() {
+                              stateValue = value;
+                            });
+                          },
+                          onCityChanged: (value) {
+                              setState(() {
+                                cityValue = value;
+                                manual_address =
+                                    '$cityValue, $stateValue, ${countryValue}';
+                              });
+                              _services.updateUser({
+                                'address':manual_address,
+                                'state':stateValue,
+                                'city':cityValue,
+                                'country':countryValue
+                              }, context).then((value){
+                                Navigator.pushNamed(context, HomeScreen.id);
+                              });
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            );
-          });
+                );
+              });
+        } else {
+          progressDialog.dismiss();
+        }
+      });
     }
 
     return WillPopScope(
@@ -206,7 +244,7 @@ class _LocationScreenState extends State<LocationScreen> {
           ),
           const SizedBox(height: 10),
           const Text(
-            'Please, enalble your location service',
+            'Please, enable your location service',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 12, color: Colors.black),
           ),
@@ -260,6 +298,7 @@ class _LocationScreenState extends State<LocationScreen> {
           InkWell(
             onTap: () {
               showBottomSheet(context);
+              progressDialog.show();
             },
             child: Container(
               alignment: Alignment.center,
